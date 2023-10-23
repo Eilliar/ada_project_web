@@ -1,5 +1,7 @@
 package tech.ada.mark1.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +21,13 @@ public class DictionaryApiController {
     }
 
     @GetMapping(value="/{word}")
-    public List<Object> getWordDefinition(@PathVariable("word") String word){
+    public ResponseEntity<List<Object>> getWordDefinition(@PathVariable("word") String word){
 
-        return this.dictionaryService.getWordDefinition(word);
+        try {
+            return new ResponseEntity<>(this.dictionaryService.getWordDefinition(word), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 }
