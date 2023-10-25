@@ -1,7 +1,5 @@
 package tech.ada.mark1.service;
 
-import com.opencsv.CSVParser;
-import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
@@ -11,7 +9,6 @@ import tech.ada.mark1.model.Word;
 import tech.ada.mark1.repository.WordRepository;
 
 import java.io.*;
-import java.util.List;
 
 @Service
 public class WordService {

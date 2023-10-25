@@ -9,9 +9,6 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String word;
-    // Other fields
-
-    // Getters and setters
 
     public void setWord(String word) {
         this.word = word;
