@@ -19,6 +19,9 @@ public class WordService {
     private WordRepository repository;
 
     public void uploadCSVData(String filePath) {
+
+        clearTable();
+
         try (Reader reader = new FileReader(filePath);
              CSVReader csvReader = new CSVReaderBuilder(reader)
                      .build()) {
@@ -36,6 +39,10 @@ public class WordService {
         } catch (CsvValidationException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void clearTable(){
+        repository.deleteAll();
     }
 }
 
