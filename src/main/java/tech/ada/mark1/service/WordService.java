@@ -5,18 +5,22 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tech.ada.mark1.model.Word;
 import tech.ada.mark1.repository.WordRepository;
 
 import java.io.*;
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class WordService {
     @Autowired
     private WordRepository repository;
 
+    @Transactional
     public void uploadCSVData(String filePath) {
-
+        System.out.println("Uploading CSV data");
         clearTable();
 
         try (Reader reader = new FileReader(filePath);
@@ -25,7 +29,9 @@ public class WordService {
 
             String[] line;
             while ((line = csvReader.readNext()) != null) {
+
                 if(line[0].length() == 5){
+                    System.out.println(line[0]);
                     Word word = new Word();
                     word.setWord(line[0]);
                     repository.save(word);
@@ -40,6 +46,18 @@ public class WordService {
 
     public void clearTable(){
         repository.deleteAll();
+    }
+
+    public List<Word> getAllWords() {
+        return repository.findAll();
+    }
+    public Word getRandomWord(){
+        List<Word> words = getAllWords();
+        if(!words.isEmpty()){
+            int randomIndex = new Random().nextInt(words.size());
+            return words.get(randomIndex);
+        }
+        return null;
     }
 }
 
