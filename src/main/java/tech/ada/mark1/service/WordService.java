@@ -20,7 +20,7 @@ public class WordService {
 
     @Transactional
     public void uploadCSVData(String filePath) {
-        System.out.println("Uploading CSV data");
+
         clearTable();
 
         try (Reader reader = new FileReader(filePath);
@@ -31,7 +31,7 @@ public class WordService {
             while ((line = csvReader.readNext()) != null) {
 
                 if(line[0].length() == 5){
-                    System.out.println(line[0]);
+
                     Word word = new Word();
                     word.setWord(line[0]);
                     repository.save(word);
