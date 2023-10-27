@@ -43,9 +43,9 @@ public class SecurityConfiguration {
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
-                httpSecurity.headers().frameOptions().disable();
+        httpSecurity.headers().frameOptions().disable();
 
-                return httpSecurity.build();
+        return httpSecurity.build();
     }
 
     @Bean
