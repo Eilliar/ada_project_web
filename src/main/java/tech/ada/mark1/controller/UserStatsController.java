@@ -30,6 +30,22 @@ public class UserStatsController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<List<UserStats>> getHistoricScores(@PathVariable Long id) {
+        try{
+            return new ResponseEntity<>(userStatsService.getHistoricScores(id),HttpStatus.OK);
+        } catch  (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
+    @GetMapping("/avg/{id}")
+    public ResponseEntity<Integer> getAvgScore(@PathVariable Long id) {
+        try{
+            return new ResponseEntity<>(userStatsService.getAverageScore(id), HttpStatus.OK);
+        } catch  (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

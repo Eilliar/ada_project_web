@@ -30,5 +30,22 @@ public class UserStatsService {
         user.getStats().add(userStats);
     }
 
+    public List<UserStats> getHistoricScores(Long id) {
+        User user = getById(id);
+
+        return user.getStats();
+    }
+
+    public Integer getAverageScore(Long id) {
+        User user = getById(id);
+        double avg = user.getStats().stream().mapToInt(stats -> stats.getNumAttempts()).average().orElse(0.0);
+        return (int) Math.round(avg);
+    }
+
+    private User getById(Long id) {
+        Optional<User> optUser = userRepository.findById(id);
+        return optUser.orElseThrow(() -> new RuntimeException("User not found!"));
+    }
+
 
 }
