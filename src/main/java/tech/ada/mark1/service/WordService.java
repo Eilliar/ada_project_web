@@ -10,6 +10,7 @@ import tech.ada.mark1.model.Word;
 import tech.ada.mark1.repository.WordRepository;
 
 import java.io.*;
+import java.util.Optional;
 import java.util.List;
 import java.util.Random;
 
@@ -48,9 +49,15 @@ public class WordService {
         repository.deleteAll();
     }
 
+    public Word getById(Long id){
+        Optional<Word> optWord = repository.findById(id);
+        return optWord.orElseThrow(() -> new RuntimeException("Word not found!"));
+    }
+  
     public List<Word> getAllWords() {
         return repository.findAll();
     }
+  
     public Word getRandomWord(){
         List<Word> words = getAllWords();
         if(!words.isEmpty()){
