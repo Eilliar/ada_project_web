@@ -1,6 +1,7 @@
 package tech.ada.mark1.model;
 
 public enum UserRole {
+
     ADMIN("admin"),
     USER("user");
 
@@ -13,4 +14,5 @@ public enum UserRole {
     public String getRole(){
         return role;
     }
+
 }

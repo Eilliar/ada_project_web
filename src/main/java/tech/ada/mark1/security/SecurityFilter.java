@@ -16,6 +16,7 @@ import java.io.IOException;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
+
     @Autowired
     TokenService tokenService;
 
@@ -40,4 +41,5 @@ public class SecurityFilter extends OncePerRequestFilter {
         if(authHeader == null) return null;
         return authHeader.replace("Bearer ", "");
     }
+
 }
