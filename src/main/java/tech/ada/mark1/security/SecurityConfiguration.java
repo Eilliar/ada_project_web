@@ -16,6 +16,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -34,13 +37,24 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(mvc.pattern("/h2-console/**")).permitAll()
+                        .requestMatchers(antMatcher("/h2-console/**")).permitAll()
                         .requestMatchers(mvc.pattern("/api/v1/auth/login")).permitAll()
                         .requestMatchers(mvc.pattern("/api/v1/auth/register")).permitAll()
                         .anyRequest().authenticated()
-                )
+                ).headers(headers -> headers.frameOptions().disable())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
+//        return httpSecurity
+//                .csrf(csrf -> csrf
+//                        .ignoringRequestMatchers(toH2Console())
+//                        .disable()
+//                )
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers(toH2Console()).permitAll()
+//                )
+//                .headers(headers -> headers.frameOptions().disable()).build();
+
+
     }
 
     @Bean
