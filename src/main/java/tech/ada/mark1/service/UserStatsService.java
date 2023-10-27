@@ -8,6 +8,9 @@ import tech.ada.mark1.repository.UserRepository;
 import tech.ada.mark1.repository.UserStatsRepository;
 import tech.ada.mark1.repository.WordRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserStatsService {
 

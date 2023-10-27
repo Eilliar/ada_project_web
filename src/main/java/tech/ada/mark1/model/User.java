@@ -31,7 +31,7 @@ public class User implements  UserDetails{
     public User() {
 
     }
-    public User(Long id, String username, String password, String email, UserRole role, UserStats stats) {
+    public User(Long id, String username, String password, String email, UserRole role, List<UserStats> stats) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -65,6 +65,50 @@ public class User implements  UserDetails{
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    public List<UserStats> getStats() {
+        return stats;
+    }
+
+    public void setStats(List<UserStats> stats) {
+        this.stats = stats;
     }
 
     @Override
