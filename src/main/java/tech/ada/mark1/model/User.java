@@ -31,13 +31,12 @@ public class User implements  UserDetails{
     public User() {
 
     }
-    public User(Long id, String username, String password, String email, UserRole role, List<UserStats> stats) {
+    public User(Long id, String username, String password, String email, UserRole role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
-        this.stats = stats;
     }
 
     public User(String username, String email, String password, UserRole role) {

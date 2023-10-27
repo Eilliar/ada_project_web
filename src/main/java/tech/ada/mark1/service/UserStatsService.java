@@ -8,6 +8,7 @@ import tech.ada.mark1.repository.UserRepository;
 import tech.ada.mark1.repository.UserStatsRepository;
 import tech.ada.mark1.repository.WordRepository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,20 +34,21 @@ public class UserStatsService {
         user.getStats().add(userStats);
     }
 
-    public List<UserStats> getHistoricScores(Long id) {
-        User user = getById(id);
-
-        return user.getStats();
+    public HashMap<String,Integer> getScores(String email){
+        User user = getByEmail(email);
+        HashMap<String,Integer> result = new HashMap<>();
+        user.getStats().forEach(stats -> result.put(stats.getWord().getWord(), stats.getNumAttempts()));
+        result.put("Average Score", getAverageScore(user));
+        return result;
     }
 
-    public Integer getAverageScore(Long id) {
-        User user = getById(id);
-        double avg = user.getStats().stream().mapToInt(stats -> stats.getNumAttempts()).average().orElse(0.0);
+    public Integer getAverageScore(User user) {
+                double avg = user.getStats().stream().mapToInt(stats -> stats.getNumAttempts()).average().orElse(0.0);
         return (int) Math.round(avg);
     }
 
-    private User getById(Long id) {
-        Optional<User> optUser = userRepository.findById(id);
+    private User getByEmail(String email) {
+        Optional<User> optUser = userRepository.findUserByEmail(email);
         return optUser.orElseThrow(() -> new RuntimeException("User not found!"));
     }
 
