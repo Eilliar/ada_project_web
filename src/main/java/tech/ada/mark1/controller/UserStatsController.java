@@ -21,9 +21,9 @@ public class UserStatsController {
     @PutMapping("/result")
     public ResponseEntity<Void> addStatus(@RequestParam("idUser") Long idUser,
                                           @RequestParam("idWord") Long idWord,
-                                          @RequestParam("qtTent") Integer qtTentativas) {
+                                          @RequestParam("numAttempts") Integer numAttempts) {
         try{
-            userStatsService.addStatus(idUser, idWord, qtTentativas);
+            userStatsService.addStatus(idUser, idWord, numAttempts);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch  (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

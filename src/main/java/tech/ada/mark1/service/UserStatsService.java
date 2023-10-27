@@ -22,11 +22,11 @@ public class UserStatsService {
         this.wordRepository = wordRepository;
     }
 
-    public void addStatus(Long idUser, Long idWord, Integer qtTentativas) {
+    public void addStatus(Long idUser, Long idWord, Integer numAttempts) {
         User user = userRepository.getById(idUser);
         Word word = wordRepository.getById(idWord);
 
-        UserStats userStats = new UserStats(qtTentativas,user,word);
+        UserStats userStats = new UserStats(numAttempts,user,word);
         user.getStats().add(userStats);
     }
 

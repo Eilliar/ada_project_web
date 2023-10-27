@@ -17,7 +17,7 @@ public class UserStats {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column()
-    private Integer qtTentativas;
+    private Integer numAttempts;
     @ManyToOne
     private User user;
     @OneToOne
@@ -31,8 +31,8 @@ public class UserStats {
         this.user = user;
     }
 
-    public UserStats(Integer qtTentativas, User user, Word word) {
-        this.qtTentativas = qtTentativas;
+    public UserStats(Integer numAttempts, User user, Word word) {
+        this.numAttempts = numAttempts;
         this.user = user;
         this.word = word;
     }
