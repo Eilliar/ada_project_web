@@ -9,6 +9,7 @@ import tech.ada.mark1.model.Word;
 import tech.ada.mark1.repository.WordRepository;
 
 import java.io.*;
+import java.util.Optional;
 
 @Service
 public class WordService {
@@ -40,6 +41,11 @@ public class WordService {
 
     public void clearTable(){
         repository.deleteAll();
+    }
+
+    public Word getById(Long id){
+        Optional<Word> optWord = repository.findById(id);
+        return optWord.orElseThrow(() -> new RuntimeException("Word not found!"));
     }
 }
 

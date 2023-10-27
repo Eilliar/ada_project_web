@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -14,19 +16,26 @@ public class UserStats {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "score")
-    private double score;
-    @OneToOne
+    @Column()
+    private Integer qtTentativas;
+    @ManyToOne
     private User user;
+    @OneToOne
+    private Word word;
 
     public UserStats() {
-
     }
+
     public UserStats(Long id, User user) {
         this.id = id;
         this.user = user;
     }
 
+    public UserStats(Integer qtTentativas, User user, Word word) {
+        this.qtTentativas = qtTentativas;
+        this.user = user;
+        this.word = word;
+    }
 
     @Override
     public boolean equals(Object o) {
