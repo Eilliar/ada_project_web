@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.ada.mark1.security.TokenService;
-import tech.ada.mark1.model.AuthenticationDTO;
-import tech.ada.mark1.model.LoginResponseDTO;
-import tech.ada.mark1.model.RegisterDTO;
+import tech.ada.mark1.dto.AuthenticationDTO;
+import tech.ada.mark1.dto.LoginResponseDTO;
+import tech.ada.mark1.dto.RegisterDTO;
 import tech.ada.mark1.model.User;
 import tech.ada.mark1.repository.UserRepository;
 

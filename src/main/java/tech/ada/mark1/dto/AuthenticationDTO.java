@@ -1,4 +1,4 @@
-package tech.ada.mark1.model;
+package tech.ada.mark1.dto;
 
 public record AuthenticationDTO(
 

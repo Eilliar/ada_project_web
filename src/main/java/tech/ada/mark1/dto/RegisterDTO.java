@@ -1,4 +1,6 @@
-package tech.ada.mark1.model;
+package tech.ada.mark1.dto;
+
+import tech.ada.mark1.model.UserRole;
 
 public record RegisterDTO(
 
