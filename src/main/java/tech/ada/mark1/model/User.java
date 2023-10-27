@@ -25,8 +25,8 @@ public class User implements UserDetails{
     @Column(name = "email",unique = true, nullable = false)
     private String email;
     private UserRole role;
-    @OneToOne
-    private UserStats stats;
+    @OneToMany(mappedBy = "user")
+    private List<UserStats> stats;
 
     public User() {
 
@@ -92,3 +92,4 @@ public class User implements UserDetails{
         return true;
     }
 }
+
